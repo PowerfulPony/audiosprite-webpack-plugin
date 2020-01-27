@@ -8,9 +8,8 @@ function audioSpriteWebpackPluginLoader(source) {
 
   const done = this.async();
   const plugin = this[pluginName];
-  const audioSprite = path.resolve(plugin.outputPath, `${plugin.filename}`);
-
-  howlerPath = require.resolve('howler-chaining');
+  const howlerPath = require.resolve('howler-chaining');
+  const audioSprite = path.resolve(this.rootContext, `${plugin.filename}`);
 
   const data = {
     path: this.resourcePath,
@@ -22,18 +21,18 @@ function audioSpriteWebpackPluginLoader(source) {
 
   plugin.addAudio(data).then((audioSpritePosition) => {
     done(null, `
-      const { HowlChain } = require(${JSON.stringify(howlerPath)});
-      const audioSprite = require(${JSON.stringify(audioSprite)}).default;
+const { HowlChain } = require(${JSON.stringify(howlerPath)});
+const audioSprite = require(${JSON.stringify(audioSprite)}).default;
 
-      const audioSpritePosition = ${JSON.stringify(audioSpritePosition)};
-      const audioSpriteSoundKey = ${JSON.stringify(audioSpriteSoundKey)};
+const audioSpritePosition = ${JSON.stringify(audioSpritePosition)};
+const audioSpriteSoundKey = ${JSON.stringify(audioSpriteSoundKey)};
 
-      const soundData = {
-        src: [audioSprite],
-        sprite: audioSpritePosition,
-      } 
+const soundData = {
+  src: [audioSprite],
+  sprite: audioSpritePosition,
+}
 
-      module.exports = new HowlChain(soundData, audioSpriteSoundKey, ${JSON.stringify(pluginName)});
+module.exports = new HowlChain(soundData, audioSpriteSoundKey, ${JSON.stringify(pluginName)});
     `);
   });
 }

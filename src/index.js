@@ -1,7 +1,5 @@
 const audiosprite = require('audiosprite');
 const debounce = require('lodash.debounce');
-const path = require('path');
-const fs = require('fs');
 
 const pluginName = 'audioSpriteWebpackPlugin';
 
@@ -13,25 +11,27 @@ class AudioSpriteWebpackPlugin {
       channels: 1,
       bitrate: 64,
       samplerate: 44100,
-      output: 'audiosprite',
+      output: '.cache.sprite',
       ...config,
     };
 
-    this.filename = `${this.config.output}.${this.config.export}`;
     this.audios = {};
     this.debounced = debounce(this.genSprite, 100);
     this.compilation = undefined;
     this.promise = undefined;
-    this.outputPath = undefined;
+  }
+
+  get filename() {
+    return `${this.config.output}.${this.config.export}`;
   }
 
   apply(compiler) {
     compiler.hooks.thisCompilation.tap(pluginName, (compilation) => {
-      this.outputPath = compilation.compiler.outputPath;
+      this.compilation = compilation;
+      this.config.output = `.cache.${compilation.name}`;
       compilation.hooks
         .normalModuleLoader
         .tap(pluginName, (loaderContext) => {
-          this.compilation = compilation;
           loaderContext[pluginName] = this; // eslint-disable-line
         });
     });
@@ -59,12 +59,7 @@ class AudioSpriteWebpackPlugin {
   genSprite(resolve) {
     const audiosPath = Object.keys(this.audios).sort();
 
-    const spritePath = path.resolve(this.outputPath, this.config.output);
-
-    audiosprite(audiosPath, {
-      ...this.config,
-      output: spritePath,
-    }, (err, data) => {
+    audiosprite(audiosPath, this.config, (err, data) => {
       const metadata = {};
       Object.keys(data.sprite).forEach((key, index) => {
         const track = data.sprite[key];
@@ -73,6 +68,9 @@ class AudioSpriteWebpackPlugin {
       });
 
       resolve(metadata);
+
+      this.promise = undefined;
+      this.audios = {};
     });
   }
 }

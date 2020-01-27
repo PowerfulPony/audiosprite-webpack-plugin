@@ -1,6 +1,6 @@
 {
   "name": "audiosprite-webpack-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Victor Zakharenko <victor@pony.ninja>",
   "license": "MIT",
   "keywords": [
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/PowerfulPony/audiosprite-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/PowerfulPony/audiosprite-webpack-plugin/issues#readme",
+  "homepage": "https://github.com/PowerfulPony/audiosprite-webpack-plugin#readme",
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint ./src --ext .js"
