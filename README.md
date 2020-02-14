@@ -11,13 +11,11 @@ npm install audiosprite-webpack-plugin --save-dev
 ```javascript
 const audioSpriteWebpackPlugin = require('audiosprite-webpack-plugin');
 
-const spriteFilename = 'audiosprite';
-
 module.exports = {
   plugins: [
     new audioSpriteWebpackPlugin.Plugin({
       audiosprite: {
-        output: spriteFilename,
+        output: 'audioSpriteName',
         export: 'mp3,ogg,ac3,m4a,caf',
         bitrate: 64
       }
@@ -28,18 +26,12 @@ module.exports = {
       {
         test: /\.(mp3|wav)$/,
         include: /(sounds)/,
-        loader: audioSpriteWebpackPlugin.loader,
+        loader: audioSpriteWebpackPlugin.loader
       },
       {
-        test: /audiosprite\.(mp3|m4a)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name]-[hash:7].[ext]'
-            }
-          }
-        ]
+        test: /audioSpriteName\.(mp3|ogg|ac3|m4a|caf)$/,
+        exclude: /(sounds)/,
+        loader: 'file-loader'
       }
     ]
   }
@@ -49,11 +41,9 @@ module.exports = {
 **`index.js`**
 
 ```javascript
-import piupiu from '@/assets/sounds/piupiu.mp3';
+import blasterShot from '@/assets/sounds/blasterShot.mp3';
 
-piupiu
-  .play()
-  .fade(1, 0, 1300);
+blasterShot.play().fade(1, 0, 300);
 ```
 
 ## Dependencies
