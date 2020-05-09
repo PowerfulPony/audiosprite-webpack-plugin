@@ -38,7 +38,7 @@ class AudioSpriteWebpackPlugin {
         this.assetPromise = undefined;
         this.assetPromiseResolve = undefined;
       });
-    }, 100);
+    }, 1000);
 
     compiler
       .hooks
