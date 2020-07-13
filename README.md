@@ -10,8 +10,9 @@ npm install audiosprite-webpack-plugin --save-dev
 
 ```javascript
 const audioSpriteWebpackPlugin = require('audiosprite-webpack-plugin');
+const needInSounds = true;
 
-module.exports = {
+const config = {
   plugins: [
     new audioSpriteWebpackPlugin.Plugin({
       audiosprite: {
@@ -26,7 +27,10 @@ module.exports = {
       {
         test: /\.(mp3|wav)$/,
         include: /(sounds)/,
-        loader: audioSpriteWebpackPlugin.loader
+        loader: audioSpriteWebpackPlugin.loader,
+        options: {
+          emptySprite: needInSounds,
+        },
       },
       {
         test: /audioSpriteName\.(mp3|ogg|ac3|m4a|caf)$/,
@@ -35,7 +39,16 @@ module.exports = {
       }
     ]
   }
+};
+
+if (needInSounds) {
+  config.module.rules.push({
+    test: /howler/,
+    loader: audioSpriteWebpackPlugin.howlerLoader,
+  });
 }
+
+module.exports = config;
 ```
 
 **`index.js`**
