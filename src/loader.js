@@ -1,10 +1,12 @@
 const path = require('path');
+const { getOptions } = require('loader-utils');
+const { pluginName } = require('./consts.js');
+const emptySound = require('./emptySound.js');
 
-const {
-  pluginName,
-} = require('./consts.js');
+function audioSpriteWebpackPluginLoader() { // eslint-disable-line consistent-return
+  const { emptySprite } = getOptions(this);
+  if (emptySprite) return `module.exports = ${emptySound}`;
 
-function audioSpriteWebpackPluginLoader() {
   const compete = this.async();
 
   const plugin = this[pluginName];
