@@ -59,7 +59,7 @@ import blasterShot from '@/assets/sounds/blasterShot.mp3';
 blasterShot.play().fade(1, 0, 300);
 ```
 
-**Inline exclude sound in src/Preloading.vue example**
+**Inline option for replacing sound with an emty howler instance**
 
 ```javascript
 modalFail: require(`@/assets/sounds/modal-fail.mp3 ${APP_HYPOTHESIS === 'a' && '?{"empty": true}'}`),
