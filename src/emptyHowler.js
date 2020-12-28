@@ -1,9 +1,9 @@
 const methods = ['init', 'volume', 'mute', 'stop', 'unload', 'codecs'];
 
-let emptyHowler = '{\n';
+let emptyHowler = '{Howler: {\n';
 methods.forEach((method) => {
   emptyHowler += `${method}() { return this; },\n`;
 });
-emptyHowler += '}';
+emptyHowler += '}}';
 
 module.exports = emptyHowler;

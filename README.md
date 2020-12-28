@@ -59,6 +59,11 @@ import blasterShot from '@/assets/sounds/blasterShot.mp3';
 blasterShot.play().fade(1, 0, 300);
 ```
 
+**Inline exclude sound in src/Preloading.vue example**
+
+```javascript
+modalFail: require(`@/assets/sounds/modal-fail.mp3 ${APP_HYPOTHESIS === 'a' && '?{"empty": true}'}`),
+```
 ## Dependencies
 
 [tonistiigi/audiosprite](https://github.com/tonistiigi/audiosprite#dependencies)

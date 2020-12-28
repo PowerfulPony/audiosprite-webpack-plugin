@@ -3,8 +3,19 @@ const { getOptions } = require('loader-utils');
 const { pluginName } = require('./consts.js');
 const emptySound = require('./emptySound.js');
 
+function getOption(...options) {
+  return options.some((option) => {
+    const regExp = new RegExp(`^\\?{"${option}":true}$`);
+
+    return getOptions(this)[option]
+    || (regExp.test(this.resourceQuery)
+      && JSON.parse(this.resourceQuery.replace(/^\?/, ''))[option]);
+  });
+}
+
 function audioSpriteWebpackPluginLoader() { // eslint-disable-line consistent-return
-  const { emptySprite } = getOptions(this);
+  const emptySprite = getOption.call(this, 'empty', 'emptySprite');
+
   if (emptySprite) return `module.exports = ${emptySound}`;
 
   const compete = this.async();
