@@ -29,7 +29,7 @@ const config = {
         include: /(sounds)/,
         loader: audioSpriteWebpackPlugin.loader,
         options: {
-          emptySprite: needInSounds,
+          emptySprite: !audioSupport,
         },
       },
       {
@@ -41,10 +41,10 @@ const config = {
   }
 };
 
-if (needInSounds) {
+if (!audioSupport) {
   config.module.rules.push({
     test: /howler/,
-    loader: audioSpriteWebpackPlugin.howlerLoader,
+    loader: audioSpriteWebpackPlugin.emptyHowlerLoader,
   });
 }
 
