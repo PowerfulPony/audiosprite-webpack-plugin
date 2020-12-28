@@ -59,10 +59,10 @@ import blasterShot from '@/assets/sounds/blasterShot.mp3';
 blasterShot.play().fade(1, 0, 300);
 ```
 
-**Inline option for replacing sound with an emty howler instance**
+**Inline option for replacing sound with an emty howler instance if you are using webpack variables**
 
 ```javascript
-modalFail: require(`@/assets/sounds/modal-fail.mp3 ${APP_HYPOTHESIS === 'a' && '?{"empty": true}'}`),
+const anySound = require(`@/assets/sounds/any-sound.mp3${WEBPACK_VARIABLE === 'a' && '?{"empty": true}'}`);
 ```
 ## Dependencies
 
