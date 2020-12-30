@@ -1,10 +1,10 @@
 const Plugin = require('./Plugin.js');
 
 const loader = require.resolve('./loader.js');
-const howlerLoader = require.resolve('./howlerLoader.js');
+const emptyHowlerLoader = require.resolve('./emptyHowlerLoader.js');
 
 module.exports = {
   Plugin,
   loader,
-  howlerLoader,
+  emptyHowlerLoader,
 };

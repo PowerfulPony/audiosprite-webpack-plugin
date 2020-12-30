@@ -29,7 +29,7 @@ const config = {
         include: /(sounds)/,
         loader: audioSpriteWebpackPlugin.loader,
         options: {
-          emptySprite: needInSounds,
+          emptySprite: !audioSupport,
         },
       },
       {
@@ -41,10 +41,10 @@ const config = {
   }
 };
 
-if (needInSounds) {
+if (!audioSupport) {
   config.module.rules.push({
     test: /howler/,
-    loader: audioSpriteWebpackPlugin.howlerLoader,
+    loader: audioSpriteWebpackPlugin.emptyHowlerLoader,
   });
 }
 
@@ -59,6 +59,11 @@ import blasterShot from '@/assets/sounds/blasterShot.mp3';
 blasterShot.play().fade(1, 0, 300);
 ```
 
+**Inline option for replacing sound with an emty howler instance if you are using webpack variables**
+
+```javascript
+const anySound = require(`@/assets/sounds/any-sound.mp3${WEBPACK_VARIABLE === 'a' && '?{"empty": true}'}`);
+```
 ## Dependencies
 
 [tonistiigi/audiosprite](https://github.com/tonistiigi/audiosprite#dependencies)
