@@ -21,6 +21,7 @@ class AudioSpriteWebpackPlugin {
   constructor(config) {
     config.audiosprite.format = 'howler2'; // eslint-disable-line no-param-reassign
     this.config = { ...config };
+    this.NormalModule = this.config.NormalModule;
     this.filename = this.config.audiosprite.output;
     this.time = new Date();
     this.assetPromise = undefined;
@@ -44,12 +45,13 @@ class AudioSpriteWebpackPlugin {
       .hooks
       .thisCompilation
       .tap(pluginName, (compilation) => {
-        compilation
-          .hooks
-          .normalModuleLoader
-          .tap(pluginName, (loaderContext) => {
-            loaderContext[pluginName] = this; // eslint-disable-line no-param-reassign
-          });
+        const loader = compiler.webpack && compiler.webpack.NormalModule
+          ? compiler.webpack.NormalModule.getCompilationHooks(compilation).loader
+          : compilation.hooks.normalModuleLoader;
+
+        loader.tap(pluginName, (loaderContext) => {
+          loaderContext[pluginName] = this; // eslint-disable-line no-param-reassign
+        });
       });
   }
 
