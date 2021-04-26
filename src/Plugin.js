@@ -44,12 +44,12 @@ class AudioSpriteWebpackPlugin {
       .hooks
       .thisCompilation
       .tap(pluginName, (compilation) => {
-        compilation
-          .hooks
-          .normalModuleLoader
-          .tap(pluginName, (loaderContext) => {
-            loaderContext[pluginName] = this; // eslint-disable-line no-param-reassign
-          });
+        const loader = compiler.webpack && compiler.webpack.NormalModule
+          ? compiler.webpack.NormalModule.getCompilationHooks(compilation).loader
+          : compilation.hooks.normalModuleLoader;
+        loader.tap(pluginName, (loaderContext) => {
+          loaderContext[pluginName] = this; // eslint-disable-line no-param-reassign
+        });
       });
   }
 
