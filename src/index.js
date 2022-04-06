@@ -1,10 +1,9 @@
-const Plugin = require('./Plugin.js');
-
-const loader = require.resolve('./loader.js');
-const emptyHowlerLoader = require.resolve('./emptyHowlerLoader.js');
+const { loaderPath } = require('accumulator-webpack-plugin');
+const Plugin = require('./Plugin');
+const { packageName } = require('./consts');
 
 module.exports = {
   Plugin,
-  loader,
-  emptyHowlerLoader,
+  loaderPath,
+  packageName,
 };

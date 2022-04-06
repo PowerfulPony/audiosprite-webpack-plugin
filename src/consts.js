@@ -1,6 +1,7 @@
-const packageName = require('../package.json').name;
+const NAMESPACE = 'AudiospriteWebpackPlugin';
+const packageName = 'audiosprite-webpack-plugin';
 
 module.exports = {
-  pluginName: 'audiospriteWebpackPlugin',
+  NAMESPACE,
   packageName,
 };
