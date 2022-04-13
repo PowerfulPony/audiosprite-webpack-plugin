@@ -1,7 +1,7 @@
 const path = require('path');
 const { getOptions } = require('loader-utils');
-const { pluginName } = require('./consts.js');
-const emptySound = require('./emptySound.js');
+const { pluginName } = require('./consts');
+const emptySound = require('./emptySound');
 
 function getOption(...options) {
   return options.some((option) => {
