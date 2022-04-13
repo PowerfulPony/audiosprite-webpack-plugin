@@ -1,13 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
-const audiosprite = require('audiosprite');
+const audiosprite = require('audiosprite-breezy');
 const findCacheDir = require('find-cache-dir');
 const debounce = require('lodash.debounce');
 
 const {
   pluginName,
   packageName,
-} = require('./consts.js');
+} = require('./consts');
 
 const cacheThunk = findCacheDir({
   name: packageName,
