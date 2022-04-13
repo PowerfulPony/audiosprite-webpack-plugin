@@ -11,10 +11,10 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ["import"],
+  plugins: ['import'],
   extends: [
-    "airbnb-base",
-    "plugin:sonarjs/recommended",
+    'airbnb-base',
+    'plugin:sonarjs/recommended',
   ],
   rules: {
     'no-console': process.env.NODE_ENV === PRODUCTION ? ERROR : OFF,
@@ -23,5 +23,5 @@ module.exports = {
   },
   parserOptions: {
     parser: 'babel-eslint',
-  }
+  },
 };

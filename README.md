@@ -10,7 +10,7 @@ npm install audiosprite-webpack-plugin --save-dev
 
 ```javascript
 const audioSpriteWebpackPlugin = require('audiosprite-webpack-plugin');
-const needInSounds = true;
+const audioSupport = true;
 
 const config = {
   plugins: [

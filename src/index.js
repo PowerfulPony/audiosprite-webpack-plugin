@@ -1,4 +1,4 @@
-const Plugin = require('./Plugin.js');
+const Plugin = require('./Plugin');
 
 const loader = require.resolve('./loader.js');
 const emptyHowlerLoader = require.resolve('./emptyHowlerLoader.js');
