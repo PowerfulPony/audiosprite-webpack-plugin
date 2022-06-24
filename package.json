@@ -35,7 +35,7 @@
     "node": ">=10.13.0"
   },
   "dependencies": {
-    "audiosprite-breezy": "^1.0.0",
+    "audiosprite-breezy": "^2.0.1",
     "find-cache-dir": "^3.3.2",
     "fs-extra": "^9.1.0",
     "howler-chaining": "^0.0.2",

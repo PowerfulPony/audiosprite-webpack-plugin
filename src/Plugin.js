@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const audiosprite = require('audiosprite-breezy');
+const { createSprite } = require('audiosprite-breezy');
 const findCacheDir = require('find-cache-dir');
 const debounce = require('lodash.debounce');
 
@@ -106,7 +106,7 @@ class AudioSpriteWebpackPlugin {
       });
       output += '  ],\n';
 
-      output += `  format: ${JSON.stringify(this.config.audiosprite.export.split(','))},\n`;
+      output += `  format: ${JSON.stringify(this.config.audiosprite.export)},\n`;
 
       output += '  sprite: {\n';
       Object.keys(spriteData.sprite).forEach((key, index) => {
@@ -133,16 +133,11 @@ class AudioSpriteWebpackPlugin {
   }
 
   createAssets(compiler) {
-    return new Promise((resolve) => {
-      audiosprite(srcList, {
-        ...this.config.audiosprite,
-        output: path.join(this.cacheCompilerDir, this.config.audiosprite.output),
-      }, (err, spriteData) => {
-        this.createJs(compiler, spriteData).then((result) => {
-          resolve(result);
-        });
-      });
-    });
+    return createSprite(srcList, {
+      ...this.config.audiosprite,
+      output: path.join(this.cacheCompilerDir, this.config.audiosprite.output),
+    })
+      .then((spriteData) => this.createJs(compiler, spriteData));
   }
 }
 
