@@ -17,7 +17,7 @@ const config = {
     new audioSpriteWebpackPlugin.Plugin({
       audiosprite: {
         output: 'audioSpriteName',
-        export: 'mp3,ogg,ac3,m4a,caf',
+        export: ['mp3','ogg','ac3','m4a','caf'],
         bitrate: 64
       }
     })
