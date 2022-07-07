@@ -75,7 +75,7 @@ class AudioSpriteWebpackPlugin {
 
   static getKey(basePath, fullPath) {
     return path.relative(basePath, fullPath)
-      .replace(new RegExp('[^a-zA-Z0-9\\-_\u00A0-\uFFFF]', 'g'), '-')
+      .replace(/'[^a-zA-Z0-9\\-_\u00A0-\uFFFF]/g, '-')
       .toLowerCase();
   }
 

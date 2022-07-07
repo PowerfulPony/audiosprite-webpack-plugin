@@ -66,7 +66,7 @@ const anySound = require(`@/assets/sounds/any-sound.mp3${WEBPACK_VARIABLE === 'a
 ```
 ## Dependencies
 
-[tonistiigi/audiosprite](https://github.com/tonistiigi/audiosprite#dependencies)
+[aapavlov1994/audiosprite-breezy](https://github.com/aapavlov1994/audiosprite-breezy#readme)
 You need to install [ffmpeg](https://www.ffmpeg.org/)
 
 ## License
