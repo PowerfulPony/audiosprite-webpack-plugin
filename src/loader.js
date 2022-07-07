@@ -1,5 +1,5 @@
 const path = require('path');
-const { getOptions } = require('loader-utils');
+const { getOptions } = require('loader-utils'); // eslint-disable-line import/no-unresolved
 const { pluginName } = require('./consts');
 const emptySound = require('./emptySound');
 
@@ -7,9 +7,8 @@ function getOption(...options) {
   return options.some((option) => {
     const regExp = new RegExp(`^\\?{"${option}":true}$`);
 
-    return getOptions(this)[option]
-    || (regExp.test(this.resourceQuery)
-      && JSON.parse(this.resourceQuery.replace(/^\?/, ''))[option]);
+    return (getOptions(this) && getOptions(this)[option])
+    || (regExp.test(this.resourceQuery) && JSON.parse(this.resourceQuery.replace(/^\?/, ''))[option]);
   });
 }
 

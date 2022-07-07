@@ -34,12 +34,14 @@
   "engines": {
     "node": ">=10.13.0"
   },
+  "peerDependencies": {
+    "loader-utils": "x"
+  },
   "dependencies": {
     "audiosprite-breezy": "^2.0.1",
     "find-cache-dir": "^3.3.2",
     "fs-extra": "^10.1.0",
     "howler-chaining": "^0.0.2",
-    "loader-utils": "^3.2.0",
     "lodash.debounce": "^4.0.8"
   }
 }
