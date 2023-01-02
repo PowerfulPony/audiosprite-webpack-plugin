@@ -1,6 +1,6 @@
 {
   "name": "audiosprite-webpack-plugin",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Victor Zakharenko <victor@pony.ninja>",
   "license": "MIT",
   "keywords": [
@@ -22,24 +22,38 @@
   },
   "homepage": "https://github.com/PowerfulPony/audiosprite-webpack-plugin#readme",
   "main": "src/index.js",
+  "files": [
+    "src/index.js",
+    "src/consts.js",
+    "src/loader.js",
+    "src/Plugin.js",
+    "src/emptyHowlerLoader.js",
+    "src/emptySound.js"
+  ],
   "scripts": {
+    "example:build": "webpack --config ./example/webpack.config.js --mode development",
+    "example:serve": "webpack serve --config ./example/webpack.config.js --mode development",
     "lint": "eslint ./src --ext .js"
   },
   "devDependencies": {
     "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-sonarjs": "^0.17.0"
+    "eslint-plugin-sonarjs": "^0.17.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   },
   "engines": {
     "node": ">=10.13.0"
   },
   "peerDependencies": {
-    "loader-utils": "x"
+    "loader-utils": "<3.0.0"
   },
   "dependencies": {
     "audiosprite-breezy": "^2.0.1",
-    "find-cache-dir": "^4.0.0",
+    "find-cache-dir": "^3.3.2",
     "fs-extra": "^11.1.0",
     "howler-chaining": "^0.0.3",
     "lodash.debounce": "^4.0.8"
