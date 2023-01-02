@@ -26,10 +26,10 @@
     "lint": "eslint ./src --ext .js"
   },
   "devDependencies": {
-    "eslint": "^8.19.0",
+    "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-sonarjs": "^0.13.0"
+    "eslint-plugin-sonarjs": "^0.17.0"
   },
   "engines": {
     "node": ">=10.13.0"
@@ -39,9 +39,9 @@
   },
   "dependencies": {
     "audiosprite-breezy": "^2.0.1",
-    "find-cache-dir": "^3.3.2",
-    "fs-extra": "^10.1.0",
-    "howler-chaining": "^0.0.2",
+    "find-cache-dir": "^4.0.0",
+    "fs-extra": "^11.1.0",
+    "howler-chaining": "^0.0.3",
     "lodash.debounce": "^4.0.8"
   }
 }
