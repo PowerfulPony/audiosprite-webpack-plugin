@@ -1,15 +1,12 @@
 const path = require('path');
-const { getOptions } = require('loader-utils'); // eslint-disable-line import/no-unresolved
+const loaderUtils = require('loader-utils'); // eslint-disable-line import/no-unresolved
 const { pluginName } = require('./consts');
 const emptySound = require('./emptySound');
 
 function getOption(...options) {
-  return options.some((option) => {
-    const regExp = new RegExp(`^\\?{"${option}":true}$`);
-
-    return (getOptions(this) && getOptions(this)[option])
-    || (regExp.test(this.resourceQuery) && JSON.parse(this.resourceQuery.replace(/^\?/, ''))[option]);
-  });
+  return options.some((option) => (
+    (loaderUtils.getOptions(this) && loaderUtils.getOptions(this)[option])
+    || (this.resourceQuery && loaderUtils.parseQuery(this.resourceQuery)[option])));
 }
 
 function audioSpriteWebpackPluginLoader() { // eslint-disable-line consistent-return
